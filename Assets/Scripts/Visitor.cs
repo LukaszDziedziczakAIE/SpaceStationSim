@@ -19,6 +19,7 @@ public class Visitor : MonoBehaviour
     NavMeshAgent navMeshAgent;
     CharacterController characterController;
     Animator animator;
+    WonderingArea wonderingArea;
 
     Vector3 lastFrame;
     [SerializeField] Vector3 testingLocation;
@@ -31,6 +32,7 @@ public class Visitor : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
         characterController = GetComponent<CharacterController>();
         animator = GetComponentInChildren<Animator>();
+        wonderingArea = FindObjectOfType<WonderingArea>();
     }
 
     private void Start()
@@ -38,7 +40,8 @@ public class Visitor : MonoBehaviour
         spawnPosition = transform.position;
         targetLocation = transform.position;
         ApplyRandomMaterials();
-        Testing();
+
+        MoveTo(wonderingArea.RandomPoint());
     }
 
     private void Update()
@@ -51,7 +54,7 @@ public class Visitor : MonoBehaviour
 
     private void UpdateAnimator()
     {
-        if (isMoving)
+        if (IsMoving)
         {
             animator.SetFloat("Speed", 1f);
         }
@@ -92,11 +95,16 @@ public class Visitor : MonoBehaviour
         body_MeshRenderer.material = bodyMaterials[Random.Range(0, bodyMaterials.Length)];
     }
 
-    private bool isMoving { get { return lastFrame != transform.position; } }
+    public bool IsMoving { get { return lastFrame != transform.position; } }
 
     private bool nearSpawnPoint { get { return Vector3.Distance(transform.position, spawnPosition) < movementThreshold; } }
 
     private float distanceToTargetLocation { get { return Vector3.Distance(transform.position, targetLocation); } }
 
     private float distanceToTestingLocation { get { return Vector3.Distance(transform.position, testingLocation); } }
+
+    public void SetUsingTouchscreen(bool usingTouchscreen)
+    {
+        animator.SetBool("UsingTouchscreen", usingTouchscreen);
+    }
 }
