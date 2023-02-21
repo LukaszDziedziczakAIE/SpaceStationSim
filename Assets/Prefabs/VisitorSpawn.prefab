@@ -78,7 +78,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acde0923b34f69d4a87e9056bc72e482, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visitorPrefab: {fileID: 8765067309229882010, guid: ec231fa51e72c8c4bb3aa84c9edc99e8,
+  visitorMalePrefab: {fileID: 8765067309229882010, guid: 16bb608063c6ba74c80a2b245e73a7ea,
+    type: 3}
+  visitorFemalePrefab: {fileID: 8765067309229882010, guid: ec231fa51e72c8c4bb3aa84c9edc99e8,
     type: 3}
   spawnPoint: {fileID: 2004503225}
 --- !u!1001 &2338464845139521479
@@ -94,7 +96,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1124916251854946, guid: e22d03e3d1c9ecb4c9fee97f23b613f2, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4181682914811192, guid: e22d03e3d1c9ecb4c9fee97f23b613f2, type: 3}
       propertyPath: m_RootOrder
@@ -150,7 +152,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 64618626673005082, guid: e22d03e3d1c9ecb4c9fee97f23b613f2,
         type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 64618626673005082, guid: e22d03e3d1c9ecb4c9fee97f23b613f2,
+        type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 64618626673005082, guid: e22d03e3d1c9ecb4c9fee97f23b613f2,
+        type: 3}
+      propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

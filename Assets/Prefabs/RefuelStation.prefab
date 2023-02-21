@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6294900872769280619}
   - component: {fileID: 2209277771711018677}
+  - component: {fileID: 1541705956}
   m_Layer: 0
   m_Name: RefuelStation
   m_TagString: Untagged
@@ -77,6 +78,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1804c5336dfb99f479433d8d8c934895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  visitorLocation: {fileID: 6294900872071099139}
+  operationTime: 2
+  <CostToRefuel>k__BackingField: 10
+  TimeToComplete: 5
+  currentVisitor: {fileID: 0}
+--- !u!208 &1541705956
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6294900872769280616}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.31, y: 0.5, z: 0.255}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &6294900872676847479
 PrefabInstance:
   m_ObjectHideFlags: 0

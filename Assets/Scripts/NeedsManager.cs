@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class NeedsManager : MonoBehaviour
 {
-    public List<RefuelStation> refuelStations;
+    public static NeedsManager Instance { get; private set; }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    public List<RefuelStation> refuelStations = new List<RefuelStation>();
 
     public bool RefuelStationAvailable
     {

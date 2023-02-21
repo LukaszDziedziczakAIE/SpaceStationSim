@@ -18,8 +18,10 @@ public class Visitor : MonoBehaviour
 
     NavMeshAgent navMeshAgent;
     CharacterController characterController;
-    Animator animator;
+    public Animator Animator { get; private set; }
     WonderingArea wonderingArea;
+    VisitorNeeds visitorNeeds;
+    public VisitorStatusBar StatusBar { get; private set; }
 
     Vector3 lastFrame;
     [SerializeField] Vector3 testingLocation;
@@ -27,75 +29,114 @@ public class Visitor : MonoBehaviour
 
     bool hasMovedAwayFromSpawn; // for debug replace with needs met later
 
+    public event Action ArrivedAtLocationEvent;
+    public bool Moving;
+
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         characterController = GetComponent<CharacterController>();
-        animator = GetComponentInChildren<Animator>();
+        Animator = GetComponentInChildren<Animator>();
         wonderingArea = FindObjectOfType<WonderingArea>();
+        visitorNeeds = GetComponent<VisitorNeeds>();
+        StatusBar = GetComponentInChildren<VisitorStatusBar>();
+
+        lastFrame = Vector3.zero;
     }
 
     private void Start()
     {
+        VisitorManager.Instance.VisitorList.Add(this);
         spawnPosition = transform.position;
-        targetLocation = transform.position;
+        //targetLocation = transform.position;
         ApplyRandomMaterials();
 
-        MoveTo(wonderingArea.RandomPoint());
+        KeepWondering();
+        visitorNeeds.SetNewState(VisitorNeeds.EState.Arived);
+
+        StatusBar.Hide();
     }
 
     private void Update()
     {
-        print(distanceToTargetLocation);
+        Arrived();
         Movement();
         UpdateAnimator();
         lastFrame = transform.position;
     }
 
+    private void Arrived()
+    {
+        if (visitorNeeds.State == VisitorNeeds.EState.Arived && IsNearTargetLocation)
+        {
+            visitorNeeds.SetNewState(VisitorNeeds.EState.Waiting);
+        }
+    }
+
     private void UpdateAnimator()
     {
-        if (IsMoving)
+        if (IsMoving())
         {
-            animator.SetFloat("Speed", 1f);
+            Animator.SetFloat("Speed", 1f);
         }
         else
         {
-            animator.SetFloat("Speed", 0f);
+            Animator.SetFloat("Speed", 0f);
         }
     }
 
     private void Movement()
     {
-        if (distanceToTestingLocation < movementThreshold) MoveTo(spawnPosition);
-
-        if (transform.position == targetLocation) return;
+        if (!Moving) return;
+        /*if (transform.position == targetLocation) return;
 
         if (navMeshAgent.destination != targetLocation) navMeshAgent.SetDestination(targetLocation);
 
         if (Vector3.Distance(transform.position, targetLocation) < movementThreshold) transform.position = targetLocation;
 
         if (nearSpawnPoint && hasMovedAwayFromSpawn) Destroy(gameObject);
-        if (!nearSpawnPoint) hasMovedAwayFromSpawn = true;
+        if (!nearSpawnPoint) hasMovedAwayFromSpawn = true;*/
+
+        if (IsNearTargetLocation) ArrivedAtLocation();
     }
 
     public void MoveTo(Vector3 target)
     {
         targetLocation = target;
+        navMeshAgent.SetDestination(targetLocation);
+        Moving = true;
+
+        
     }
 
-    private void Testing()
+    private void ArrivedAtLocation()
     {
-        testingLocation = targetLocation;
-        testingLocation.x += 10;
-        MoveTo(testingLocation);
+        Moving = false;
+        ArrivedAtLocationEvent?.Invoke();
+
+        if (visitorNeeds.State == VisitorNeeds.EState.Arived) visitorNeeds.SetNewState(VisitorNeeds.EState.Waiting);
+
+        visitorNeeds.FufillNeeds();
+        //visitorNeeds.CompleteNeed();
+
+
+        if (visitorNeeds.State == VisitorNeeds.EState.Exiting)
+        {
+            //print("destroying " + name);
+            Destroy(gameObject);
+        }
     }
 
     private void ApplyRandomMaterials()
     {
         body_MeshRenderer.material = bodyMaterials[Random.Range(0, bodyMaterials.Length)];
+        head_MeshRenderer.material = headMaterials[Random.Range(0, headMaterials.Length)];
     }
 
-    public bool IsMoving { get { return lastFrame != transform.position; } }
+    public bool IsMoving()
+    {
+        return lastFrame != transform.position;
+    }
 
     private bool nearSpawnPoint { get { return Vector3.Distance(transform.position, spawnPosition) < movementThreshold; } }
 
@@ -103,8 +144,25 @@ public class Visitor : MonoBehaviour
 
     private float distanceToTestingLocation { get { return Vector3.Distance(transform.position, testingLocation); } }
 
+    public bool IsNearTargetLocation { get { return distanceToTargetLocation < movementThreshold; } }
+
     public void SetUsingTouchscreen(bool usingTouchscreen)
     {
-        animator.SetBool("UsingTouchscreen", usingTouchscreen);
+        Animator.SetBool("UsingTouchscreen", usingTouchscreen);
+    }
+
+    public void KeepWondering()
+    {
+        MoveTo(wonderingArea.RandomPoint());
+    }
+
+    public void ExitStation()
+    {
+        MoveTo(spawnPosition);
+    }
+
+    private void OnDestroy()
+    {
+        VisitorManager.Instance.VisitorList.Remove(this);
     }
 }
