@@ -11,6 +11,7 @@ public class UI_Bottom : MonoBehaviour
     [SerializeField] TextMeshProUGUI inGameTime;
     [SerializeField] TextMeshProUGUI inGameDay;
     [SerializeField] TextMeshProUGUI currency;
+    [SerializeField] TextMeshProUGUI visitor;
     [SerializeField] Button buildButton;
 
     private void Start()
@@ -19,12 +20,18 @@ public class UI_Bottom : MonoBehaviour
 
         GameTime.Instance.HourTick += GameTime_HourTick;
         Currency.Instance.CurrencyChanged += Currency_CurrencyChanged;
-        
+        FindObjectOfType<VisitorSpawn>().VisitorSpawned += VisitorSpawn_VisitorSpawned;
+
+
         UpdateTimeDate();
         UpdateCurrency();
+        UpdateVisitorCount();
     }
 
-    
+    private void VisitorSpawn_VisitorSpawned()
+    {
+        UpdateVisitorCount();
+    }
 
     private void Update()
     {
@@ -55,6 +62,12 @@ public class UI_Bottom : MonoBehaviour
     private void OnBuildButtonPress()
     {
         UI_HUD.Instance.BuildMenuUI.Show();
+    }
+
+    private void UpdateVisitorCount()
+    {
+        print("updating visitor cound " + VisitorManager.Instance.NumberOfVisitors);
+        visitor.text = "Visitors: " + VisitorManager.Instance.NumberOfVisitors;
     }
 
 }

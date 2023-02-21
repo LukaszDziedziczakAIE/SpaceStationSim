@@ -33,12 +33,9 @@ public class VisitorManager : MonoBehaviour
     {
         if (NumberOfVisitors >= MaxVisitors) return;
 
-        int randomInt = Random.Range(0, 100);
+        int randomInt = Random.Range(0, 4);
 
-        if (randomInt < SpawnPercentageBase)
-        {
-            visitorSpawn.SpawnVisitor();
-        }
+        visitorSpawn.AddToSpawnQue(randomInt);
     }
 
     public int NumberOfVisitors { get { return VisitorList.Count; } }

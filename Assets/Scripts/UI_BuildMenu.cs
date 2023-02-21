@@ -29,8 +29,7 @@ public class UI_BuildMenu : MonoBehaviour
 
     private void ButtonVisibility()
     {
-        int refuelStationCost = FindObjectOfType<RefuelStation>().CostToBuild;
-        buildRefuelStationButton.interactable = Currency.Instance.CanAfford(refuelStationCost) && BuildManager.Instance.CanBuildRefuelStation;
+        buildRefuelStationButton.interactable = Currency.Instance.CanAfford(BuildManager.Instance.RefuelStationCost) && BuildManager.Instance.CanBuildRefuelStation;
     }
 
     private void OnCancelButtonPress()
@@ -40,8 +39,8 @@ public class UI_BuildMenu : MonoBehaviour
 
     private void OnRefuelStationButtonPress()
     {
-        int refuelStationCost = FindObjectOfType<RefuelStation>().CostToBuild;
-        Currency.Instance.RemoveMoney(refuelStationCost);
+        Currency.Instance.RemoveMoney(BuildManager.Instance.RefuelStationCost);
         BuildManager.Instance.BuildRefuelStation();
+        ButtonVisibility();
     }
 }

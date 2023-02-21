@@ -8,6 +8,8 @@ public class BuildManager : MonoBehaviour
 
     [SerializeField] List<RefuelStation> refuelStations;
 
+    [field: SerializeField] public int RefuelStationCost { get; private set; }
+
     private void Awake()
     {
         Instance = this;

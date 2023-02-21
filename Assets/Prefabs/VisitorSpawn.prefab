@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2004503224}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -1.473, y: 0, z: 2.498}
+  m_LocalPosition: {x: 0.639, y: 0, z: 2.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -83,6 +83,7 @@ MonoBehaviour:
   visitorFemalePrefab: {fileID: 8765067309229882010, guid: ec231fa51e72c8c4bb3aa84c9edc99e8,
     type: 3}
   spawnPoint: {fileID: 2004503225}
+  spawnRate: 0.2
 --- !u!1001 &2338464845139521479
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -7,7 +7,6 @@ public class RefuelStation : MonoBehaviour
     [SerializeField] Transform visitorLocation;
     [SerializeField] float operationTime;
     [field: SerializeField] public int CostToRefuel { get; private set; }
-    [field: SerializeField] public int CostToBuild { get; private set; }
     public float TimeToComplete;
 
     public Visitor currentVisitor;

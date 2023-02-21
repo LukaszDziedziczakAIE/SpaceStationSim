@@ -46,7 +46,7 @@ public class Visitor : MonoBehaviour
 
     private void Start()
     {
-        VisitorManager.Instance.VisitorList.Add(this);
+        //VisitorManager.Instance.VisitorList.Add(this);
         spawnPosition = transform.position;
         //targetLocation = transform.position;
         ApplyRandomMaterials();
