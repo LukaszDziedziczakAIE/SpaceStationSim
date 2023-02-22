@@ -26,7 +26,7 @@ MonoBehaviour:
   m_MinSize: {x: 500, y: 200}
   m_MaxSize: {x: 40480, y: 16192}
   vertical: 0
-  controlID: 7373
+  controlID: 8344
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -258,7 +258,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000665300003c540000d45300004654000070530000ca050100c2030100b6010100184801007e630000da780100ac6a01004e56010030570100348d0100728b0100d07101000c7001006e6401000e870100f88e0100ba4a010010630000e463000092010600ea5003009ca20500d0c9000088c80000c6b50000ccb50000f6b500008ef50000e2140700f22d0800749f0100649f0100f4870200
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -311,7 +311,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 0
-  controlID: 7374
+  controlID: 8345
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -420,7 +420,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 7375
+  controlID: 8346
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
