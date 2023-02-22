@@ -43,7 +43,9 @@ public class UI_Bottom : MonoBehaviour
 
     private void Update()
     {
-        timer.text = (Time.time / 60f).ToString("F0") + ":" + (Time.time % 60f).ToString("F0");
+        int minute = (int)(Time.time / 60f);
+        int second = (int)(Time.time % 60f);
+        timer.text = minute.ToString("D2") + ":" + second.ToString("D2");
     }
 
     private void GameTime_HourTick()

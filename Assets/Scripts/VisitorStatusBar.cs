@@ -19,6 +19,6 @@ public class VisitorStatusBar : MonoBehaviour
 
     public void UpdateBar(float amount)
     {
-        statusBar.fillAmount = amount;
+        statusBar.fillAmount = 1 - amount;
     }
 }

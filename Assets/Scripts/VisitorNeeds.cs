@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -24,7 +25,8 @@ public class VisitorNeeds : MonoBehaviour
     private Vector3 needsLocation;
 
     private NeedsManager needsManager;
-    RefuelStation refuelStation;
+    //RefuelStation refuelStation;
+    NeedStation needStation;
 
     private void Awake()
     {
@@ -34,8 +36,19 @@ public class VisitorNeeds : MonoBehaviour
 
     private void Start()
     {
-        Needs.Add(ENeed.Fuel);
+        AddNeeds();
+        
         tickTimer = 1f;
+    }
+
+    private void AddNeeds()
+    {
+        Needs.Add(ENeed.Fuel);
+
+        if (NeedsManager.Instance.cafStations.Count > 0)
+        {
+            Needs.Add(ENeed.CafeFood);
+        }
     }
 
     private void Update()
@@ -54,9 +67,18 @@ public class VisitorNeeds : MonoBehaviour
 
         if (Needs.Contains(ENeed.Fuel) && needsManager.RefuelStationAvailable)
         {
-            refuelStation = needsManager.nextAvailableRefuelStation;
-            refuelStation.currentVisitor = visitor;
-            visitor.MoveTo(refuelStation.Location);
+            needStation = needsManager.nextAvailableRefuelStation;
+            needStation.currentVisitor = visitor;
+            visitor.MoveTo(needStation.Location);
+            SetNewState(EState.MovingToFufillmnet);
+            return;
+        }
+
+        if (Needs.Contains(ENeed.CafeFood) && needsManager.CaffateriaStationAvailable)
+        {
+            needStation = needsManager.nextAvailableCaffateriaStation;
+            needStation.currentVisitor = visitor;
+            visitor.MoveTo(needStation.Location);
             SetNewState(EState.MovingToFufillmnet);
             return;
         }
@@ -75,9 +97,10 @@ public class VisitorNeeds : MonoBehaviour
         {
             SetNewState(EState.Fufilling);
             visitor.StatusBar.Show();
-            needsTimer = refuelStation.TimeToComplete;
-            visitor.transform.LookAt(refuelStation.transform);
-            visitor.Animator.SetBool("UsingTouchscreen",true);
+            needsTimer = needStation.TimeToComplete;
+            visitor.transform.position = needStation.Location;
+            visitor.transform.rotation = needStation.VisitorRotation;
+            visitor.Animator.SetBool(needStation.AnimationName, true);
         }
 
 
@@ -90,12 +113,12 @@ public class VisitorNeeds : MonoBehaviour
             {
                 visitor.StatusBar.Hide();
                 SetNewState(EState.Waiting);
-                Needs.RemoveAt(0);
-                visitor.Animator.SetBool("UsingTouchscreen", false);
-                Currency.Instance.AddMoney(refuelStation.CostToRefuel);
-                refuelStation.Used();
-                refuelStation.currentVisitor = null;
-                refuelStation = null;
+                Needs.Remove(needStation.Need);
+                visitor.Animator.SetBool(needStation.AnimationName, false);
+                Currency.Instance.AddMoney(needStation.CostToUse);
+                needStation.Used();
+                needStation.currentVisitor = null;
+                needStation = null;
                 FufillNeeds();
             }
         }
@@ -111,8 +134,8 @@ public class VisitorNeeds : MonoBehaviour
     {
         get
         {
-            if (refuelStation == null) return 0f;
-            return needsTimer / refuelStation.TimeToComplete;
+            if (needStation == null) return 0f;
+            return needsTimer / needStation.TimeToComplete;
         }
     }
 }

@@ -41,4 +41,32 @@ public class NeedsManager : MonoBehaviour
             return null;
         }
     }
+
+    public bool CaffateriaStationAvailable
+    {
+        get
+        {
+            if (cafStations.Count == 0) return false;
+
+            foreach (CaffateriaStation cafStation in cafStations)
+            {
+                if (!cafStation.Occupied) return true;
+            }
+
+            return false;
+        }
+    }
+
+    public CaffateriaStation nextAvailableCaffateriaStation
+    {
+        get
+        {
+            if (!CaffateriaStationAvailable) return null;
+            foreach (CaffateriaStation cafStation in cafStations)
+            {
+                if (!cafStation.Occupied) return cafStation;
+            }
+            return null;
+        }
+    }
 }

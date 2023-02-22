@@ -79,8 +79,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visitorLocation: {fileID: 4483520557404321295}
-  <CostToRefuel>k__BackingField: 20
-  TimeToComplete: 5
+  <CostToUse>k__BackingField: 20
+  TimeToComplete: 10
+  stationRatingIncreaseCap: 20
+  <AnimationName>k__BackingField: Sitting
+  <Need>k__BackingField: 2
   currentVisitor: {fileID: 0}
   foodObject: {fileID: 4486640175652869333}
 --- !u!1001 &4487606452769280271

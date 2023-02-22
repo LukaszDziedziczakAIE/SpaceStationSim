@@ -7,8 +7,10 @@ public class BuildManager : MonoBehaviour
     public static BuildManager Instance { get; private set; }
 
     [SerializeField] List<RefuelStation> refuelStations;
+    [SerializeField] Cafeteria cafeteria;
 
-    [field: SerializeField] public int RefuelStationCost { get; private set; }
+    [field: SerializeField, Header("Cost")] public int RefuelStationCost { get; private set; }
+    [field: SerializeField] public int CafeteriaCost { get; private set; }
 
     private void Awake()
     {
@@ -46,4 +48,27 @@ public class BuildManager : MonoBehaviour
             }
         }
     }
+
+    public bool CanBuildCafeteria
+    {
+        get
+        {
+            if (!cafeteria.gameObject.activeSelf) return true;
+
+            return cafeteria.CanBuildMoreTables;
+        }
+    }
+
+    public void BuildCafeteria()
+    {
+        if (!CanBuildCafeteria) return;
+        if (!cafeteria.gameObject.activeSelf)
+        {
+            cafeteria.gameObject.SetActive(true);
+            return;
+        }
+
+        cafeteria.BuildTable();
+    }
+
 }

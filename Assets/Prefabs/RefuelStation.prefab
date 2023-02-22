@@ -79,9 +79,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visitorLocation: {fileID: 6294900872071099139}
-  operationTime: 2
-  <CostToRefuel>k__BackingField: 10
-  TimeToComplete: 5
+  <CostToUse>k__BackingField: 10
+  TimeToComplete: 3
+  stationRatingIncreaseCap: 10
+  <AnimationName>k__BackingField: UsingTouchscreen
+  <Need>k__BackingField: 1
   currentVisitor: {fileID: 0}
 --- !u!208 &1541705956
 NavMeshObstacle:

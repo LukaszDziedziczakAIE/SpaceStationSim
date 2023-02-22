@@ -182,7 +182,14 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  cafeteria: {fileID: 0}
   <RefuelStationCost>k__BackingField: 100
+  <CafeteriaCost>k__BackingField: 400
 --- !u!1 &7701878674531728686
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,6 +235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   refuelStations: []
+  cafStations: []
 --- !u!1 &7701878675122877566
 GameObject:
   m_ObjectHideFlags: 0

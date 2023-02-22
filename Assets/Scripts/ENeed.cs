@@ -1,5 +1,6 @@
 public enum ENeed
 {
     Nothing,
-    Fuel
+    Fuel,
+    CafeFood
 }
