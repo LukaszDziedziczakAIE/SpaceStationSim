@@ -6,12 +6,13 @@ public class NeedsManager : MonoBehaviour
 {
     public static NeedsManager Instance { get; private set; }
 
+    public List<RefuelStation> refuelStations = new List<RefuelStation>();
+    public List<CaffateriaStation> cafStations = new List<CaffateriaStation>();
+
     private void Awake()
     {
         Instance = this;
     }
-
-    public List<RefuelStation> refuelStations = new List<RefuelStation>();
 
     public bool RefuelStationAvailable
     {

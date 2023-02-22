@@ -6,7 +6,7 @@ using UnityEngine;
 public class Currency : MonoBehaviour
 {
     public static Currency Instance { get; private set; }
-    public int Money { get; private set; }
+    [field: SerializeField] public int Money { get; private set; }
 
     public event Action CurrencyChanged;
 

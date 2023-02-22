@@ -41,6 +41,6 @@ public class UI_BuildMenu : MonoBehaviour
     {
         Currency.Instance.RemoveMoney(BuildManager.Instance.RefuelStationCost);
         BuildManager.Instance.BuildRefuelStation();
-        ButtonVisibility();
+        Hide();
     }
 }

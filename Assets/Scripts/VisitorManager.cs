@@ -10,7 +10,9 @@ public class VisitorManager : MonoBehaviour
 
     [SerializeField] VisitorSpawn visitorSpawn;
     [SerializeField] int SpawnPercentageBase;
-    [SerializeField] int MaxVisitors;
+    [SerializeField] int MaxVisitorsBase;
+    [SerializeField] int MaxVisitorsMultiplier;
+    [SerializeField] int SpawnRateMultiplier = 1;
 
     public List<Visitor> VisitorList;
 
@@ -33,10 +35,34 @@ public class VisitorManager : MonoBehaviour
     {
         if (NumberOfVisitors >= MaxVisitors) return;
 
-        int randomInt = Random.Range(0, 4);
+        if (NumberOfVisitors == 0)
+        {
+            visitorSpawn.AddToSpawnQue();
+            return;
+        }
 
-        visitorSpawn.AddToSpawnQue(randomInt);
+        int repeats = Mathf.Clamp(StationManager.Instance.StationRating, 1 , 10);
+
+        while (repeats > 0)
+        {
+            int randomInt = Random.Range(0, 100);
+
+            if (randomInt < StationManager.Instance.StationRating * SpawnRateMultiplier)
+            {
+                visitorSpawn.AddToSpawnQue();
+            }
+
+            repeats--;
+        }
     }
 
     public int NumberOfVisitors { get { return VisitorList.Count; } }
+
+    public int MaxVisitors
+    {
+        get
+        {
+            return MaxVisitorsBase + (StationManager.Instance.StationRating * MaxVisitorsMultiplier);
+        }
+    }
 }

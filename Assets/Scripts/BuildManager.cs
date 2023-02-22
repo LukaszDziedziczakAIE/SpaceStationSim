@@ -36,6 +36,12 @@ public class BuildManager : MonoBehaviour
             if (!refuelStation.gameObject.activeSelf)
             {
                 refuelStation.gameObject.SetActive(true);
+                
+                if (StationManager.Instance.StationRating < 10)
+                {
+                    StationManager.Instance.IncreaseStationRating();
+                }
+
                 return;
             }
         }

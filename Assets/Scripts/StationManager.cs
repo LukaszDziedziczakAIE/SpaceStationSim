@@ -1,18 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class StationManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static StationManager Instance { get; private set; }
+
+    [field: SerializeField] public int StationRating { get; private set; } = 1;
+
+    public event Action StationRatingChanged;
+
+    private void Awake()
     {
-        
+        Instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void IncreaseStationRating(int amount = 1)
     {
-        
+        StationRating += amount;
+        StationRatingChanged?.Invoke();
     }
 }

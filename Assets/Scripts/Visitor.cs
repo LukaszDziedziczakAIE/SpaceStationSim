@@ -164,5 +164,6 @@ public class Visitor : MonoBehaviour
     private void OnDestroy()
     {
         VisitorManager.Instance.VisitorList.Remove(this);
+        UI_HUD.Instance.BottomUI.UpdateVisitorCount();
     }
 }

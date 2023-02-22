@@ -93,7 +93,7 @@ public class VisitorNeeds : MonoBehaviour
                 Needs.RemoveAt(0);
                 visitor.Animator.SetBool("UsingTouchscreen", false);
                 Currency.Instance.AddMoney(refuelStation.CostToRefuel);
-
+                refuelStation.Used();
                 refuelStation.currentVisitor = null;
                 refuelStation = null;
                 FufillNeeds();

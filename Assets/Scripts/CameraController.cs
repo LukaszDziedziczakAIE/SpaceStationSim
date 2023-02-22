@@ -15,6 +15,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] float zoomSpeed;
     [SerializeField] float maxZoom;
     [SerializeField] float minZoom;
+    [SerializeField] LayerMask floorLayer;
 
     private void Awake()
     {
@@ -79,9 +80,22 @@ public class CameraController : MonoBehaviour
     private void HandleMovement()
     {
         if (inputReader.CameraMovement.magnitude == 0) return;
-
+        Vector3 origin = transform.position;
         Vector3 movement = transform.forward * inputReader.CameraMovement.y + transform.right * inputReader.CameraMovement.x;
 
         transform.position += movement * movementSpeed * Time.deltaTime;
+
+        if (!AboveFloor) transform.position = origin;
+    }
+
+    private bool AboveFloor
+    {
+        get
+        {
+            Vector3 origin = transform.position;
+            origin.y += 1;
+            Ray ray = new Ray(origin, -transform.up);
+            return Physics.Raycast(ray, 3, floorLayer);
+        }
     }
 }
