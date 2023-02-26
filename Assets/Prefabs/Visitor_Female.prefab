@@ -52,7 +52,7 @@ MonoBehaviour:
   body_MeshRenderer: {fileID: 6897578489973470725}
   head_MeshRenderer: {fileID: 6897319166797530393}
   targetLocation: {x: 0, y: 0, z: 0}
-  movementThreshold: 0.5
+  movementThreshold: 0.2
   bodyMaterials:
   - {fileID: 2100000, guid: 4cee7a5983b187943adc589b9cb1f084, type: 2}
   - {fileID: 2100000, guid: eaee0f11d6e5b7d4db338fedb688937e, type: 2}

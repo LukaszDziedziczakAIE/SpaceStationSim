@@ -6348,6 +6348,50 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 282935400, guid: 2c73914800e036540a8a720c9bc739e9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 23.9974
+      objectReference: {fileID: 0}
+    - target: {fileID: 282935400, guid: 2c73914800e036540a8a720c9bc739e9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.83206093
+      objectReference: {fileID: 0}
+    - target: {fileID: 282935400, guid: 2c73914800e036540a8a720c9bc739e9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.5546842
+      objectReference: {fileID: 0}
+    - target: {fileID: 282935400, guid: 2c73914800e036540a8a720c9bc739e9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1e-45
+      objectReference: {fileID: 0}
+    - target: {fileID: 282935400, guid: 2c73914800e036540a8a720c9bc739e9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -1e-45
+      objectReference: {fileID: 0}
+    - target: {fileID: 330585546, guid: 2c73914800e036540a8a720c9bc739e9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 23.9974
+      objectReference: {fileID: 0}
+    - target: {fileID: 330585546, guid: 2c73914800e036540a8a720c9bc739e9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.83206093
+      objectReference: {fileID: 0}
+    - target: {fileID: 330585546, guid: 2c73914800e036540a8a720c9bc739e9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.5546842
+      objectReference: {fileID: 0}
+    - target: {fileID: 330585546, guid: 2c73914800e036540a8a720c9bc739e9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1e-45
+      objectReference: {fileID: 0}
+    - target: {fileID: 330585546, guid: 2c73914800e036540a8a720c9bc739e9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -1e-45
+      objectReference: {fileID: 0}
+    - target: {fileID: 1713843598, guid: 2c73914800e036540a8a720c9bc739e9, type: 3}
+      propertyPath: m_FollowOffset.y
+      value: 23.9974
+      objectReference: {fileID: 0}
     - target: {fileID: 1845135850204275457, guid: 2c73914800e036540a8a720c9bc739e9,
         type: 3}
       propertyPath: m_RootOrder
