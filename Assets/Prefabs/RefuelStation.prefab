@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visitorLocation: {fileID: 6294900872071099139}
-  <CostToUse>k__BackingField: 10
+  <CostToUse>k__BackingField: 5
   TimeToComplete: 3
   stationRatingIncreaseCap: 10
   <AnimationName>k__BackingField: UsingTouchscreen

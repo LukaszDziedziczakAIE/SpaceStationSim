@@ -1622,7 +1622,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CancelButton: {fileID: 656069775892737015}
   buildRefuelStationButton: {fileID: 656069777058592028}
+  buildRefuelStationText: {fileID: 656069775049793703}
   buildCafeteriaButton: {fileID: 656069776817921759}
+  buildCafeteriaText: {fileID: 656069776156688420}
 --- !u!1 &656069776609721695
 GameObject:
   m_ObjectHideFlags: 0

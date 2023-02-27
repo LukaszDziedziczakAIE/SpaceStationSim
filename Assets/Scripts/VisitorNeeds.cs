@@ -116,6 +116,7 @@ public class VisitorNeeds : MonoBehaviour
                 Needs.Remove(needStation.Need);
                 visitor.Animator.SetBool(needStation.AnimationName, false);
                 Currency.Instance.AddMoney(needStation.CostToUse);
+                visitor.ShowVisitorMessage("$" + needStation.CostToUse);
                 needStation.Used();
                 needStation.currentVisitor = null;
                 needStation = null;

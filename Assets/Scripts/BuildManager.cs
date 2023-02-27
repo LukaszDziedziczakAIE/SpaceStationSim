@@ -62,6 +62,12 @@ public class BuildManager : MonoBehaviour
     public void BuildCafeteria()
     {
         if (!CanBuildCafeteria) return;
+
+        if (StationManager.Instance.StationRating < 20)
+        {
+            StationManager.Instance.IncreaseStationRating();
+        }
+
         if (!cafeteria.gameObject.activeSelf)
         {
             cafeteria.gameObject.SetActive(true);

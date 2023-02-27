@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +8,10 @@ public class UI_BuildMenu : MonoBehaviour
 {
     [SerializeField] Button CancelButton;
     [SerializeField] Button buildRefuelStationButton;
+    [SerializeField] TextMeshProUGUI buildRefuelStationText;
     [SerializeField] Button buildCafeteriaButton;
+    [SerializeField] TextMeshProUGUI buildCafeteriaText;
+
 
     private void Start()
     {
@@ -16,6 +20,7 @@ public class UI_BuildMenu : MonoBehaviour
         buildCafeteriaButton.onClick.AddListener(OnBuildCafeteriaButtonPress);
 
         Hide();
+        SetButtonText();
     }
 
     public void Show()
@@ -57,5 +62,11 @@ public class UI_BuildMenu : MonoBehaviour
         Currency.Instance.RemoveMoney(BuildManager.Instance.CafeteriaCost);
         BuildManager.Instance.BuildCafeteria();
         Hide();
+    }
+
+    private void SetButtonText()
+    {
+        buildRefuelStationText.text = "Refuel Station\n$" + BuildManager.Instance.RefuelStationCost.ToString();
+        buildCafeteriaText.text = "Cafeteria\n$" + BuildManager.Instance.CafeteriaCost.ToString();
     }
 }

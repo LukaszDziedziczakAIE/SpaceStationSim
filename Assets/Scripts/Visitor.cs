@@ -15,6 +15,9 @@ public class Visitor : MonoBehaviour
     [SerializeField] Material[] bodyMaterials;
     [SerializeField] Material[] headMaterials;
 
+    [SerializeField] GameObject MessageCanvas;
+    [SerializeField] UI_VisitorMessage MessagePrefab;
+
 
     NavMeshAgent navMeshAgent;
     CharacterController characterController;
@@ -165,5 +168,11 @@ public class Visitor : MonoBehaviour
     {
         VisitorManager.Instance.VisitorList.Remove(this);
         UI_HUD.Instance.BottomUI.UpdateVisitorCount();
+    }
+
+    public void ShowVisitorMessage(string message)
+    {
+        UI_VisitorMessage visitorMessage = Instantiate(MessagePrefab, MessageCanvas.transform);
+        visitorMessage.SetMessage(message);
     }
 }

@@ -13,6 +13,7 @@ public class VisitorManager : MonoBehaviour
     [SerializeField] int MaxVisitorsBase;
     [SerializeField] int MaxVisitorsMultiplier;
     [SerializeField] int SpawnRateMultiplier = 1;
+    [SerializeField] int SpawnRepeatsMax = 10;
 
     public List<Visitor> VisitorList;
 
@@ -41,7 +42,7 @@ public class VisitorManager : MonoBehaviour
             return;
         }
 
-        int repeats = Mathf.Clamp(StationManager.Instance.StationRating, 1 , 10);
+        int repeats = Mathf.Clamp(StationManager.Instance.StationRating, 1 , SpawnRepeatsMax);
 
         while (repeats > 0)
         {
